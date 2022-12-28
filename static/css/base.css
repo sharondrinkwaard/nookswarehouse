@@ -1,17 +1,36 @@
-html {
-    height: 100%;
+
+* {
+    margin: auto;
+}
+.body {
+    display: flex;
 }
 
 body {
     /* background: url('/media/logo_nooks_warehouse.png') no-repeat center center;
     background-size: cover; */
+    background-color: white;
     height: calc(100vh - 160px);
 }
+/* ----------------------------------------- HEADER */
 
-text-orange {
+header {
+    background-color: white;
+}
+.text-orange {
     color: orange !important;
 }
 
+/* ----------------------------------------- FOOTER */
+
 footer {
-    background-color: orange !important;
+    background-color: #25283D;
+    color: white;
 }
+
+footer a {
+    color: #97C8EB;
+    text-decoration: none;
+}
+
+/* ----------------------------------------- MEDIA QUERIES */

@@ -22,8 +22,8 @@
 
 </head>
 <body class="mt-5">
-  <header class="container-fluid fixed-top bg-secondary w-100">
-    <nav class="navbar navbar-expand-lg bg-secondary">
+  <header class="container-fluid fixed-top w-100">
+    <nav class="navbar navbar-expand-lg">
       <div class="container-fluid">
         <a class="navbar-brand" id="logo" href="#">NOOKS WAREHOUSE</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
@@ -32,7 +32,7 @@
         <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
           <ul class="navbar-nav me-auto mb-2 mb-lg-0">
             <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="#">Home</a>
+              <a class="nav-link active" aria-current="page" href="">Home</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="#about-us-section">About Us</a>
@@ -43,23 +43,33 @@
             <li class="nav-item">
               <a class="nav-link" href="#contact-section">Contact</a>
             </li>
+
+            {% if user.is_authenticated %}
             <li class="nav-item">
-              <a class="nav-link" href="#">Login</a>
+              <a class="nav-link" href="">My Account</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link text-orange" href="#">Register</a>
+              <a class="nav-link" href="{% url 'account_logout' %}">Sign Out</a>
             </li>
+            {% else %}
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'account_login' %}">Login</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link text-orange" href="{% url 'account_signup' %}">Register</a>
+            </li>
+            {% endif %}
           </ul>
           <form class="d-flex" role="search">
             <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
             <button class="btn btn-outline-success" type="submit">Search</button>
           </form>
-          <a class="nav-item nav-link text-black nav-link" href="#" id="user-options" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <a class="nav-item nav-link text-black" href="#" id="user-options" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             <div class="text-center">
                 <div><i class="fas fa-user fa-lg"></i></div>
             </div>
           </a>
-          <a class="nav-item nav-link text-info font-weight-bold text-black nav-link" href="">
+          <a class="nav-item nav-link text-info font-weight-bold text-black" href="">
             <div class="text-center">
                 <div><i class="fas fa-shopping-bag fa-lg"></i></div>
             </div>
@@ -79,7 +89,7 @@
   {% block content %}
   {% endblock %}
 
-  <footer class="container-fluid bm-0 bg-secondary w-100">
+  <footer class="container-fluid bm-0 w-100">
     <div class="row align-items">
       <div class="col">
         <h4>Customer Service</h4>
