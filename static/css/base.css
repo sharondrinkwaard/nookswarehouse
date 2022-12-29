@@ -2,15 +2,11 @@
 * {
     margin: auto;
 }
-.body {
-    display: flex;
-}
 
 body {
-    /* background: url('/media/logo_nooks_warehouse.png') no-repeat center center;
-    background-size: cover; */
     background-color: white;
-    height: calc(100vh - 160px);
+    /* height: calc(100vh - 160px); */
+    height: 100vh;
 }
 /* ----------------------------------------- HEADER */
 
@@ -21,11 +17,18 @@ header {
     color: orange !important;
 }
 
+/* ----------------------------------------- BUTTONS */
+
+.btn-custom {
+    background-color: #C4A29E;
+}
+
 /* ----------------------------------------- FOOTER */
 
 footer {
     background-color: #25283D;
     color: white;
+    bottom: 0;
 }
 
 footer a {
