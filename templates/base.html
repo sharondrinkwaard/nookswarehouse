@@ -35,13 +35,13 @@
               <a class="nav-link active" aria-current="page" href="">Home</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#about-us-section">About Us</a>
+              <a class="nav-link" href="{% url 'index' %}#about-us-section">About Us</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="#">Categories</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#contact-section">Contact</a>
+              <a class="nav-link" href="{% url 'index' %}#contact-section">Contact</a>
             </li>
 
             {% if user.is_authenticated %}
