@@ -10,3 +10,9 @@ def index(request):
 def overview_orders(request):
     """ A view to display the orders made by the authenticated customer """
     return render(request, 'overview_orders.html')
+
+
+def customer_service(request):
+    """ A view to direct to the customer service page """
+    return render(request, 'service.html')
+    
