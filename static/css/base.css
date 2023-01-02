@@ -10,11 +10,25 @@ body {
 }
 /* ----------------------------------------- HEADER */
 
-header {
+nav {
     background-color: white;
 }
 .text-orange {
     color: orange !important;
+}
+
+.header-image{
+    background-image: url('/static/images/header.jpg');
+    background-position-y: 67%;
+    background-color: black;
+    height: 30vh;
+    width: 100vw;
+    background-size: cover;
+}
+.header-text{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 /* ----------------------------------------- BUTTONS */

@@ -22,8 +22,8 @@
 
 </head>
 <body class="mt-5">
-  <header class="container-fluid fixed-top w-100">
-    <nav class="navbar navbar-expand-lg">
+  <header class="container-fluid ">
+    <nav class="navbar navbar-expand-lg fixed-top w-100">
       <div class="container-fluid">
         <a class="navbar-brand" id="logo" href="#">NOOKS WAREHOUSE</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
@@ -84,14 +84,23 @@
         </div>
       </div>
     </nav>
+    <div class="header-image">
+      <div class="header-text">
+        <h1 class="text-orange mt-5">
+          {% block page_header %}
+          {% endblock %}
+        </h1>
+        <p>
+          {% block extra_page_header %}
+          {% endblock %}
+        </p>
+      </div>
+  </div>
   </header>
 
   {% if messages %}
   <div class="message-container"></div>
   {% endif %}
-
-  {% block page_header %}
-  {% endblock %}
 
   {% block content %}
   {% endblock %}
