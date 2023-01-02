@@ -37,9 +37,16 @@
             <li class="nav-item">
               <a class="nav-link" href="{% url 'index' %}#about-us-section">About Us</a>
             </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Categories</a>
-            </li>
+            <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Categories
+          </a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="#">Action</a></li>
+            <li><a class="dropdown-item" href="#">Another action</a></li>
+            <li><a class="dropdown-item" href="#">Something else here</a></li>
+          </ul>
+        </li>
             <li class="nav-item">
               <a class="nav-link" href="{% url 'index' %}#contact-section">Contact</a>
             </li>
@@ -62,7 +69,7 @@
           </ul>
           <form class="d-flex" role="search">
             <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-            <button class="btn btn-outline-success" type="submit">Search</button>
+            <button class="btn btn-custom" type="submit">Search</button>
           </form>
           <a class="nav-item nav-link text-black" href="{% if user.is_authenticated %}{% url 'overview_orders' %}{% else %}{% url 'account_login' %}{% endif %}" id="user-options" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             <div class="text-center">
@@ -113,7 +120,7 @@
         <h4>Nooks Warehouse</h4>
         <ul class="list-unstyled">
           <li>
-            <a href="">About Us</a>
+            <a href="{% url 'index' %}#about-us-section">About Us</a>
           </li>
           <li>
             <a href="{% url 'customer_service' %}#terms-conditions">Terms & Conditions</a>
