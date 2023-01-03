@@ -5,7 +5,7 @@ class contact_form(models.Model):
     first_name = models.CharField(max_length=80)
     last_name = models.CharField(max_length=80)
     email = models.EmailField()
-    date = models.DateField(default=datetime.now)
+    date = models.DateTimeField(auto_now=True)
     notes = models.TextField(blank=True)
 
     class Meta:
