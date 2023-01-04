@@ -72,7 +72,8 @@ For the total project (including the features left to implement) I am estimating
 	href="{% url 'customer_service' %}#terms-conditions"
 ```
 
-- 
+- <strong>Link from products to product detail page</strong> When clicking on a product image, nothing would happen. I figured out that I swapped the urls to link would direct to the page I was currently on. I solved this by swapping the links.
+
 ### Unsolved
 ---
 There are no bugs left unsolved.
