@@ -1,6 +1,6 @@
 # Nooks Warehouse
 
-Welcome to Nooks Warehouse, a shop for all your household products and furniture.
+Welcome to Nooks Warehouse, a shop for all your household products and furniture. This shop is based in the Netherlands and eventually will expand to more countries in the EU. 
 
 MOCKUP PICTURE
 
@@ -16,7 +16,7 @@ MOCKUP PICTURE
 
 ### Products
 ---
-For now I am displaying example products and I used the same data for this as in the Boutique Ado walkthrough. So these are not real products. 
+For now I am displaying example products and I used the same data for this as in the Boutique Ado walkthrough. So these are not real products. To display these products, I also used the models and views like in the walkthrough, because this is the quickest and easiest way to display the products for now. After submitting, I am going to delete all the products and implement the plug-in from VidaXL to start my dropshipping business. 
 
 ## Left to Implement
 - As soon as I submit this project, I am going to start replacing the current products with real products. So that visitors can actually buy physical products. I am going to use a dropshipping plug-in from VidaXl WooCommerce for the inventory.  
@@ -74,6 +74,8 @@ For the total project (including the features left to implement) I am estimating
 
 - 
 ### Unsolved
+---
+There are no bugs left unsolved.
 
 
 ## Credits
