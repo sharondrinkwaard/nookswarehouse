@@ -6,6 +6,7 @@ MOCKUP PICTURE
 
 ## Features
 ---
+### Favicon
 ### Navigation Bar
 ### Promoted Categories
 ### Promoted Products
@@ -16,7 +17,14 @@ MOCKUP PICTURE
 
 ### Products
 ---
-For now I am displaying example products and I used the same data for this as in the Boutique Ado walkthrough. So these are not real products. To display these products, I also used the models and views like in the walkthrough, because this is the quickest and easiest way to display the products for now. After submitting, I am going to delete all the products and implement the plug-in from VidaXL to start my dropshipping business. 
+For now I am displaying example products and I used the same data for this as in the Boutique Ado walkthrough. So these are not real products. 
+
+To display these products, I used the models, views and database from the walkthrough project, because this is the quickest and easiest way to display the products for now. 
+
+<strong>NOTE:</strong> To show that I understand how rendering these products and categories work, I made some changes and I added extra data to these files myself. You can find them under the category 'baby'.
+
+After submitting, I am going to delete all the products and implement the plug-in from VidaXL to start my dropshipping business. 
+
 
 ## Left to Implement
 - As soon as I submit this project, I am going to start replacing the current products with real products. So that visitors can actually buy physical products. I am going to use a dropshipping plug-in from VidaXl WooCommerce for the inventory.  
