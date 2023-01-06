@@ -2,21 +2,22 @@ from django.shortcuts import render, redirect, reverse, get_object_or_404
 from django.contrib import messages
 # Q handles queries
 from django.db.models import Q
-from .models import Product
+from .models import Product, Category
 
 
 def all_products(request):
     """ A view to show all products, including sorting and search queries """
 
     products = Product.objects.all()
-    category = None
+    categories = None
     query = None
 
-    # Gets the category or search request from the input and displays the correct products
+    # Gets the category/search request and displays the correct products
     if request.GET:
         if 'category' in request.GET:
             categories = request.GET['category'].split(',')
             products = products.filter(category__name__in=categories)
+            categories = Category.objects.filter(name__in=categories)
 
         if 'request' in request.GET:
             query = request.GET['request']
@@ -31,7 +32,8 @@ def all_products(request):
 
     context = {
         'products': products,
-        'search_request': query
+        'search_request': query,
+        'current_cat': categories,
     }
 
     return render(request, 'products/products.html', context)
