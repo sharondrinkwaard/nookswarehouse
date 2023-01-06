@@ -9,10 +9,15 @@ def all_products(request):
     """ A view to show all products, including sorting and search queries """
 
     products = Product.objects.all()
+    category = None
     query = None
 
-    # Gets the search request from the input which is called 'request'
+    # Gets the category or search request from the input and displays the correct products
     if request.GET:
+        if 'category' in request.GET:
+            categories = request.GET['category'].split(',')
+            products = products.filter(category__name__in=categories)
+
         if 'request' in request.GET:
             query = request.GET['request']
             if not query:
@@ -42,5 +47,3 @@ def product_detail(request, product_id):
     }
 
     return render(request, 'products/product_detail.html', context)
-
-

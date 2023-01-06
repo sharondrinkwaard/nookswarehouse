@@ -43,8 +43,13 @@
           </a>
           <ul class="dropdown-menu">
             <li><a class="dropdown-item" href="{% url 'products' %}">All Products</a></li>
-            <li><a class="dropdown-item" href="#">Another action</a></li>
-            <li><a class="dropdown-item" href="#">Something else here</a></li>
+            <li><a class="dropdown-item" href="{% url 'products' %}?category=new_arrivals">New Arrivals</a></li>
+            <li><a class="dropdown-item" href="{% url 'products' %}?category=jeans">Jeans</a></li>
+            <li><a class="dropdown-item" href="{% url 'products' %}?category=shirts">Shirts</a></li>
+            <li><a class="dropdown-item" href="{% url 'products' %}?category=shirts,jeans,activewear,essentials">All Clothing</a></li>
+            <li><a class="dropdown-item" href="{% url 'products' %}?category=bed_bath">Bed and Bath</a></li>
+            <li><a class="dropdown-item" href="{% url 'products' %}?category=kitchen_dining">Kitchen and Dining</a></li>
+            <li><a class="dropdown-item" href="{% url 'products' %}?category=deals">Promoted Products</a></li>
           </ul>
         </li>
             <li class="nav-item">
