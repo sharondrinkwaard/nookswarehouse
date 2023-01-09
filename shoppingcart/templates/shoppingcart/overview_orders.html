@@ -46,8 +46,15 @@
                 {% endfor %}
                     <tr>
                         <td colspan="4"></td>
-                        <td colspan="2"><strong> Shoppingcart total: &euro;{{ total|floatformat:2 }}</strong></td>
-                    </tr>      
+                        <td class="text-right" colspan="2"><strong> Shoppingcart total: &euro;{{ total|floatformat:2 }}</strong></td>
+                    </tr>    
+                    <tr>
+                        <td colspan="4"></td>
+                        <td>
+                            <a class="btn btn-custom" href="{% url 'products' %?">Keep Shopping</a>
+                            <a class="btn btn-custom" href="">Checkout</a>
+                        </td>
+                    </tr>  
                 </tbody>
             {% else %}
                 <p>You shopping cart is empty</p>
