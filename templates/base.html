@@ -83,12 +83,24 @@
           </form>
           <a class="nav-item nav-link text-black" href="{% if user.is_authenticated %}{% url 'overview_orders' %}{% else %}{% url 'account_login' %}{% endif %}" id="user-options" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             <div class="text-center">
-                <div><i class="fas fa-user fa-lg"></i></div>
+                <div>
+                  <i class="fas fa-user fa-lg"></i>
+                  <p>
+                    Account
+                  </p>
+                </div>
             </div>
           </a>
-          <a class="nav-item nav-link text-info font-weight-bold text-black" href="">
+          <a class="nav-item nav-link text-info font-weight-bold text-black" href="{% if user.is_authenticated %}{% url 'overview_orders' %}{% else %}{% url 'account_login' %}{% endif %}">
             <div class="text-center">
-                <div><i class="fas fa-shopping-bag fa-lg"></i></div>
+                <div>
+                  <i class="fas fa-shopping-bag fa-lg"></i>
+                  <p>
+                    {% if total %}
+                      €{{ total|floatformat:2 }}
+                    {% endif %}
+                  </p>
+                </div>
             </div>
         </a>
         </div>

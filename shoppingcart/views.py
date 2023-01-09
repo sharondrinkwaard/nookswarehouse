@@ -7,7 +7,7 @@ def overview_orders(request):
 
 
 def add_to_cart(request, article_id):
-    """ A view to add items to the shopping cart """
+    """ A view to add articles to the shopping cart """
     quantity = int(request.POST.get('quantity'))
     redirect_url = request.POST.get('redirect_url')
 

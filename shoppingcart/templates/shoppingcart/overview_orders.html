@@ -10,18 +10,50 @@
         <div class="col-md-8 mt-5 offset-md-2">
             <h2>Hello {{ request.user.username }}!</h2>
             <p>See your order information down below:</p>
-            <hr>
         </div>  
-        <div class="col-md-8 mt-3 offset-md-2">
+        <div class="table-responsive-sm table-responsive-md">
             {% if shopping_items %}
-            <div class="table-responsive"></div>
-            <a href="" class="btn btn-custom btn-sm">Edit</a>
-            <a href="" class="btn btn-custom btn-sm" onclick="return confirm('Are you sure you want to delete this order?')">Delete</a>
-            <hr>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th  scope="col"></th>
+                        <th class="text-uppercase" scope="col">Article</th>
+                        <th class="text-uppercase" scope="col">Price</th>
+                        <th class="text-uppercase" scope="col">Quantity</th>
+                        <th scope="col"></th>
+                        <th scope="col"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                {% for article in shopping_items %}    
+                    <tr>
+                        <th scope="row"> <img class="" src="{{ article.product.image.url }}" alt=""></th>
+                        <td>
+                            <p><strong>{{ article.product.name }}</strong>></p>
+                            <p>SKU: {{ article.product.sku }}</p>
+                            <p><strong>Size:</strong></p>
+                        </td>
+                        <td>
+                            <p>&euro;{{ article.product.price }}</p>
+                        </td>
+                        <td>
+                            <p>{{ article.product.quantity }}</p>
+                        </td>
+                        <td>
+                            <a href="" class="btn btn-custom btn-sm">Edit</a>
+                            <a href="" class="btn btn-custom btn-sm" onclick="return confirm('Are you sure you want to delete this order?')">Delete</a>
+                        </td>
+                {% endfor %}
+                    <tr>
+                        <td colspan="4"></td>
+                        <td colspan="2"><strong> Shoppingcart total: &euro;{{ total|floatformat:2 }}</strong></td>
+                    </tr>      
+                </tbody>
             {% else %}
                 <p>You shopping cart is empty</p>
                 <a class="btn btn-custom btn-sm mt-3 mb-5" href="{% url 'products' %}">Shop Now!</a>
             {% endif %}
+            </table>
         </div>
     </div>
 </section>
