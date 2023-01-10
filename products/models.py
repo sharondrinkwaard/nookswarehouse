@@ -17,9 +17,17 @@ class Category(models.Model):
 
 
 SIZE_CHOICES = (
-    ('Small', 'Small'),
-    ('Medium', 'Medium'),
-    ('Large', 'Large'),
+    ('XS', 'XS'),
+    ('S', 'S'),
+    ('M', 'M'),
+    ('L', 'L'),
+    ('XL', 'XL'),
+)
+
+COLOR_CHOICES = (
+    ('Red', 'Red'),
+    ('Blue', 'Blue'),
+    ('Orange', 'Orange'),
 )
 
 
@@ -37,3 +45,13 @@ class Product(models.Model):
 
     def __str__(self):
         return self.name
+
+
+class QuantitySize(models.Model):
+    # Class which is used to create the form for the product_detail page
+    size_option = models.CharField(max_length=80, choices=SIZE_CHOICES, default='S')
+    quantity = models.IntegerField(blank=False, default=1)
+    color_option = models.CharField(max_length=15, blank=True, default='Red', choices=COLOR_CHOICES)
+
+    def __str__(self):
+        return f'Quantity: {self.quantity} | Size: {self.size_option}'
