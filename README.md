@@ -82,6 +82,10 @@ For the total project (including the features left to implement) I am estimating
 
 - <strong>Link from products to product detail page</strong> When clicking on a product image, nothing would happen. I figured out that I swapped the urls to link would direct to the page I was currently on. I solved this by swapping the links.
 
+- <strong>I added a Booleandfield to the products model instead of a Charfield.</strong> I made migrations for this using <italic>python3 manage.py makemigrations</italic>). They couldn't be applied using <italic>python3 manage.py migrate</italic> because the requirements of a booleanfield didn't match the ones I was trying to apply. This resulted in an error. By using <italic>showmigrations</italic> I figured out that for every change I tried to make, the first one was still the one with an typo in it and was preventing all other migrations to be applied. 
+
+I solved this by deleting all unapplied (but made migrations) from the products app inside the migrations folder. Without having to clear the whole database. I made sure to create a new migration for the changes and this time it worked and the website was running again. 
+
 ### Unsolved
 ---
 There are no bugs left unsolved.
