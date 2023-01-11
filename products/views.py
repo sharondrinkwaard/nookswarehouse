@@ -1,9 +1,11 @@
 from django.shortcuts import render, redirect, reverse, get_object_or_404
 from django.contrib import messages
+from django.contrib.auth.models import User
 # Q handles queries
 from django.db.models import Q
-from .models import Product, Category
-from .forms import ShoppingcartForm
+from .models import Product, Category, QuantitySize
+# from .forms import ShoppingcartForm
+from django.views import View
 
 
 def all_products(request):
@@ -44,11 +46,33 @@ def product_detail(request, product_id):
     """ A view to show individual product details """
 
     product = get_object_or_404(Product, pk=product_id)
-    form = ShoppingcartForm()
+    # form = ShoppingcartForm()
 
     context = {
         'product': product,
-        'form': form,
+        # 'form': form,
     }
 
     return render(request, 'products/product_detail.html', context)
+
+
+# class quantity_size(View):
+
+#     def post(self, request):
+#         form = ShoppingcartForm(request.POST)
+#         if form.is_valid():
+#             add_item = form.save()
+#             return redirect('redirect_url')
+#         else:
+#             render(request, 'products.html', {'form': form})
+
+    # def get(request, qs_id):
+    #     # current_user = request.user
+    #     # queryset = QuantitySize.objects.filter(posted_by=current_user)
+    #     # q_s = get_object_or_404(QuantitySize, pk=qs_id)
+
+    #     context = {
+    #         'q_s': q_s
+    #     }
+    #     return render(request, 'shoppingcart/overview_orders.html', context)
+

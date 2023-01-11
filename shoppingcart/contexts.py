@@ -13,10 +13,12 @@ def shopping_content(request):
 
     for article_id, quantity in cart.items():
         product = get_object_or_404(Product, pk=article_id)
+        # q_s = get_object_or_404(QuantitySize, pk=qs_id)
         total += quantity * product.price
         product_count += quantity
         shopping_items.append({
             'article_id': article_id,
+            # 'q_s': q_s,
             'quantity': quantity,
             'product': product,
         })

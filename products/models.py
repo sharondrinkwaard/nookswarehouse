@@ -49,6 +49,7 @@ class Product(models.Model):
 
 class QuantitySize(models.Model):
     # Class which is used to create the form for the product_detail page
+    # posted_by = models.ForeignKey(User, on_delete=models.CASCADE)
     size_option = models.CharField(max_length=80, choices=SIZE_CHOICES, default='S')
     quantity = models.IntegerField(blank=False, default=1)
     color_option = models.CharField(max_length=15, blank=True, default='Red', choices=COLOR_CHOICES)
