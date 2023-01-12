@@ -1,10 +1,20 @@
 from django import forms
-from .models import QuantitySize
+from .models import QuantitySize, Product
 
 
-# class ShoppingcartForm(forms.ModelForm):
-#     class Meta:
-#         model = QuantitySize
-#         # Excluding the color option for now
-#         # Needing it to continue after this project
-#         exclude = ('color_option',)
+class ProductSize(forms.ModelForm):
+    class Meta:
+        model = Product
+        fields = ('size_option',)
+
+
+class ProductQuantity(forms.ModelForm):
+    class Meta:
+        model = Product
+        fields = ('quantity',)
+
+
+class ProductColor(forms.ModelForm):
+    class Meta:
+        model = Product
+        fields = ('color_option',)

@@ -10,8 +10,13 @@ def add_to_cart(request, article_id):
     """ A view to add articles to the shopping cart """
     quantity = int(request.POST.get('quantity'))
     redirect_url = request.POST.get('redirect_url')
-
+    size = None
+    # if 'product_size' in request.POST:
+    #     size = request.POST['size']
     cart = request.session.get('cart', {})
+
+    # if size:
+    #     if article_id in list(cart.keys()):
 
     if article_id in list(cart.keys()):
         cart[article_id] += quantity

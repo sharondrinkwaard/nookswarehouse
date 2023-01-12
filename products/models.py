@@ -38,6 +38,9 @@ class Product(models.Model):
     description = models.TextField()
     has_sizes = models.BooleanField(default=False, blank=True, null=True)
     size_option = models.CharField(max_length=80, choices=SIZE_CHOICES, default='S')
+    quantity = models.IntegerField(blank=False, default=1)
+    has_color = models.BooleanField(default=False, blank=True, null=True)
+    color_option = models.CharField(max_length=15, blank=True, default='Red', choices=COLOR_CHOICES)
     price = models.DecimalField(max_digits=6, decimal_places=2)
     rating = models.DecimalField(max_digits=6, decimal_places=2, null=True, blank=True)
     image_url = models.URLField(max_length=1024, null=True, blank=True)
@@ -51,8 +54,6 @@ class QuantitySize(models.Model):
     # Class which is used to create the form for the product_detail page
     # posted_by = models.ForeignKey(User, on_delete=models.CASCADE)
     size_option = models.CharField(max_length=80, choices=SIZE_CHOICES, default='S')
-    quantity = models.IntegerField(blank=False, default=1)
-    color_option = models.CharField(max_length=15, blank=True, default='Red', choices=COLOR_CHOICES)
-
+    
     def __str__(self):
         return f'Quantity: {self.quantity} | Size: {self.size_option}'

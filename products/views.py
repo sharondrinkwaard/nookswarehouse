@@ -4,7 +4,7 @@ from django.contrib.auth.models import User
 # Q handles queries
 from django.db.models import Q
 from .models import Product, Category, QuantitySize
-# from .forms import ShoppingcartForm
+from .forms import ProductSize, ProductQuantity, ProductColor
 from django.views import View
 
 
@@ -46,33 +46,37 @@ def product_detail(request, product_id):
     """ A view to show individual product details """
 
     product = get_object_or_404(Product, pk=product_id)
-    # form = ShoppingcartForm()
+    form_size = ProductSize()
+    form_quanity = ProductQuantity()
+    form_color = ProductColor()
 
     context = {
         'product': product,
-        # 'form': form,
-    }
+        'form_size': form_size,
+        'form_quantity': form_quanity,
+        'form_color': form_color,
+        }
 
     return render(request, 'products/product_detail.html', context)
 
 
-# class quantity_size(View):
+class QuantitySizeColor(View):
 
-#     def post(self, request):
-#         form = ShoppingcartForm(request.POST)
-#         if form.is_valid():
-#             add_item = form.save()
-#             return redirect('redirect_url')
-#         else:
-#             render(request, 'products.html', {'form': form})
+    def post(self, request):
+        q = ProductQuantity(request.POST)
+        
+        if q.is_valid():
+            add_q = q.save(commit=False)
+            add_q.save()
+            return redirect('redirect_url')
+        else:
+            render(request, 'products.html', {'q': q})
 
-    # def get(request, qs_id):
-    #     # current_user = request.user
-    #     # queryset = QuantitySize.objects.filter(posted_by=current_user)
-    #     # q_s = get_object_or_404(QuantitySize, pk=qs_id)
-
-    #     context = {
-    #         'q_s': q_s
-    #     }
-    #     return render(request, 'shoppingcart/overview_orders.html', context)
-
+    def post_size(self, request):
+        s = ProductSize(request.POST)
+        if s.is_valid():
+            add_s = s.save(commit=False)
+            add_s.save()
+            return redirect('redirect_url')
+        else:
+            render(request, 'products.html', {'s': s})
