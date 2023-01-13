@@ -62,15 +62,15 @@ def product_detail(request, product_id):
 
 class QuantitySizeColor(View):
 
-    def post(self, request):
-        q = ProductQuantity(request.POST)
+    # def post(self, request):
+    #     q = ProductQuantity(request.POST)
         
-        if q.is_valid():
-            add_q = q.save(commit=False)
-            add_q.save()
-            return redirect('redirect_url')
-        else:
-            render(request, 'products.html', {'q': q})
+    #     if q.is_valid():
+    #         add_q = q.save(commit=False)
+    #         add_q.save()
+    #         return redirect('redirect_url')
+    #     else:
+    #         render(request, 'products.html', {'q': q})
 
     def post_size(self, request):
         s = ProductSize(request.POST)

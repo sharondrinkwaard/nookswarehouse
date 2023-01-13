@@ -10,18 +10,38 @@ def shopping_content(request):
     product_count = 0
     delivery = 0
     cart = request.session.get('cart', {})
+    print(cart)
+    # for article_id, quantity in cart.items():
+    #     product = get_object_or_404(Product, pk=article_id)
+    #     total += quantity * product.price
+    #     product_count += quantity
+    #     shopping_items.append({
+    #         'article_id': article_id,
+    #         'quantity': quantity,
+    #         'product': product,
+    #     })
 
-    for article_id, quantity in cart.items():
-        product = get_object_or_404(Product, pk=article_id)
-        # q_s = get_object_or_404(QuantitySize, pk=qs_id)
-        total += quantity * product.price
-        product_count += quantity
-        shopping_items.append({
-            'article_id': article_id,
-            # 'q_s': q_s,
-            'quantity': quantity,
-            'product': product,
-        })
+    for article_id, item_data in cart.items():
+        if isinstance(item_data, int):
+            product = get_object_or_404(Product, pk=article_id)
+            total += item_data * product.price
+            product_count += item_data
+            shopping_items.append({
+                'article_id': article_id,
+                'quantity': item_data,
+                'product': product,
+            })
+        else:
+            product = get_object_or_404(Product, pk=article_id)
+            for size, quantity in item_data['items_by_size'].items():
+                total += quantity * product.price
+                product_count += quantity
+                shopping_items.append({
+                    'article_id': article_id,
+                    'quantity': quantity,
+                    'product': product,
+                    'size': size,
+                })
     # Grand total is not in use yet
     # Note: I will need it when continuing after submitting PP5.
     grand_total = total + delivery
