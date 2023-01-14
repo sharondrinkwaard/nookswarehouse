@@ -27,7 +27,7 @@ After submitting, I am going to delete all the products and implement the plug-i
 
 
 ## Left to Implement
-- As soon as I submit this project, I am going to start replacing the current products with real products. So that visitors can actually buy physical products. I am going to use a dropshipping plug-in from VidaXl WooCommerce for the inventory.  
+- As soon as I submit this project, I am going to start replacing the current products with real products. So that visitors can actually buy physical products. I am going to use a dropshipping plug-in from VidaXL WooCommerce for the inventory.  
 -	I am also going to add a Pinterest link to the Pinterest account for the affiliate marketing part of this business.
 
 
@@ -40,6 +40,7 @@ After submitting, I am going to delete all the products and implement the plug-i
 	- #FFFF82
 	- #087F8C
 	- #97C8EB
+
 I might not have used all of them at this moment, but I will in the future.
 
 ## Libraries & Installations
@@ -47,6 +48,7 @@ I might not have used all of them at this moment, but I will in the future.
 - Django Allauth
 - Summernote 
 - Pillow
+- Crispy forms
 
 
 
@@ -84,7 +86,9 @@ For the total project (including the features left to implement) I am estimating
 
 - <strong>I added a Booleandfield to the products model instead of a Charfield.</strong> I made migrations for this using <italic>python3 manage.py makemigrations</italic>). They couldn't be applied using <italic>python3 manage.py migrate</italic> because the requirements of a booleanfield didn't match the ones I was trying to apply. This resulted in an error. By using <italic>showmigrations</italic> I figured out that for every change I tried to make, the first one was still the one with an typo in it and was preventing all other migrations to be applied. 
 
-I solved this by deleting all unapplied (but made migrations) from the products app inside the migrations folder. Without having to clear the whole database. I made sure to create a new migration for the changes and this time it worked and the website was running again. 
+	I solved this by deleting all unapplied (but made migrations) from the products app inside the migrations folder. Without having to clear the whole database. I made sure to create a new migration for the changes and this time it worked and the website was running again. 
+
+- <strong></strong>
 
 ### Unsolved
 ---
