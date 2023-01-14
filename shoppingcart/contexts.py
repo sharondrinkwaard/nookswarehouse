@@ -10,16 +10,8 @@ def shopping_content(request):
     product_count = 0
     delivery = 0
     cart = request.session.get('cart', {})
+    # delete before deployment
     print(cart)
-    # for article_id, quantity in cart.items():
-    #     product = get_object_or_404(Product, pk=article_id)
-    #     total += quantity * product.price
-    #     product_count += quantity
-    #     shopping_items.append({
-    #         'article_id': article_id,
-    #         'quantity': quantity,
-    #         'product': product,
-    #     })
 
     for article_id, item_data in cart.items():
         if isinstance(item_data, int):
