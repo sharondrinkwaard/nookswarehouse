@@ -90,7 +90,7 @@
                 </div>
             </div>
           </a>
-          <a class="nav-item nav-link text-info font-weight-bold text-black" href="{% if user.is_authenticated %}{% url 'overview_orders' %}{% else %}{% url 'account_login' %}{% endif %}">
+          <a class="nav-item nav-link text-info font-weight-bold text-black" href="{% url 'overview_orders' %}">
             <div class="text-center">
                 <div>
                   <i class="fas fa-shopping-bag fa-lg"></i>

@@ -1,4 +1,5 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, reverse, get_object_or_404
+from products.models import Product
 
 
 def overview_orders(request):
@@ -32,3 +33,55 @@ def add_to_cart(request, article_id):
 
     request.session['cart'] = cart
     return redirect(redirect_url)
+
+
+def edit_cart(request, article_id):
+    """ Change the quantity and / or size of the product """
+
+    product = get_object_or_404(Product, pk=article_id)
+    quantity = int(request.POST.get('quantity'))
+    size = None
+
+    if 'size_option' in request.POST:
+        size = request.POST['size_option']
+    cart = request.session.get('cart', {})
+
+    if size:
+        if quantity > 0:
+            cart[article_id]['items_by_size'][size] = quantity
+            # messages.success(request, f'Updated size {size.upper()} {product.name} quantity to {bag[item_id]["items_by_size"][size]}')
+        else:
+            del cart[article_id]['items_by_size'][size]
+            if not cart[article_id]['items_by_size']:
+                cart.pop(article_id)
+            # messages.success(request, f'Removed size {size.upper()} {product.name} from your bag')
+    else:
+        if quantity > 0:
+            cart[article_id] = quantity
+            # messages.success(request, f'Updated {product.name} quantity to {bag[article_id]}')
+        else:
+            cart.pop(article_id)
+            # messages.success(request, f'Removed {product.name} from your bag')
+
+    request.session['cart'] = cart
+    return redirect(reverse('overview_orders'))
+
+
+def delete_from_cart(request, article_id):
+    """ Delete article from shopping cart """
+
+    product = get_object_or_404(Product, pk=article_id)
+    quantity = int(request.POST.get('quantity'))
+    size = None
+    if 'size_option' in request.POST:
+        size = request.POST['size_option']
+    cart = request.session.get('cart', {})
+
+    if size:
+        del cart[article_id]['items_by_size'][size]
+        if not cart[article_id]['items_by_size']:
+            cart.pop(article_id)
+        # messages.success(request, f'Removed size {size.upper()} {product.name} from your cart')
+    else:
+        cart.pop(article_id)
+        # messages.success(request, f'Removed {product.name} from your cart')
