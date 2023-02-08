@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect, reverse, get_object_or_404
+from django.shortcuts import render, redirect, reverse, get_object_or_404, HttpResponse
 from products.models import Product
 
 
@@ -71,7 +71,6 @@ def delete_from_cart(request, article_id):
     """ Delete article from shopping cart """
 
     product = get_object_or_404(Product, pk=article_id)
-    quantity = int(request.POST.get('quantity'))
     size = None
     if 'size_option' in request.POST:
         size = request.POST['size_option']
@@ -85,3 +84,6 @@ def delete_from_cart(request, article_id):
     else:
         cart.pop(article_id)
         # messages.success(request, f'Removed {product.name} from your cart')
+
+    request.session['cart'] = cart
+    return HttpResponse(status=200)
