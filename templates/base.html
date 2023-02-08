@@ -85,7 +85,7 @@
                 <div>
                   <i class="fas fa-user fa-lg"></i>
                   <p>
-                    Account
+                    {% if user.is_authenticated %}{{ request.user.username }}{% else %}Account{% endif %}
                   </p>
                 </div>
             </div>
@@ -97,6 +97,7 @@
                   <p>
                     {% if total %}
                       €{{ total|floatformat:2 }}
+                      {% else %}€0.00
                     {% endif %}
                   </p>
                 </div>
