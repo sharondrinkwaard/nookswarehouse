@@ -31,25 +31,26 @@
                         <td>
                             <p><strong><a href="{% url 'product_detail' article.product.id %}">{{ article.product.name }}</a></strong></p>
                             <p>SKU: {{ article.product.sku }}</p>
+                        
                             {% if article.product.has_sizes %}
                             <p><strong>Size: </strong>{{ article.size }}</p>
                             {% endif %}
                             
-                            {% if article.product.has_color %}
-                            <p><strong>Color: </strong>{{ article.product.color_option }}</p>
-                            {% endif %}
                         </td>
                         <td>
                             <p>&euro;{{ article.product.price }}</p>
                         </td>
-                    <form class="form update-form form-control form-control-sm" method="POST" action="{% url 'edit_cart' article.article_id %}">
+                    <form class="form update-form form-control form-control-sm" id="update-form" method="POST" action="{% url 'edit_cart' article.article_id %}">
                         {% csrf_token %}
                         <td>
                             <input type="number" id="id_qty_{{ article.article_id }}" name="quantity" value="{{ article.quantity }}" min="1" max="50" data-item_id="{{ article.article_id }}">
                         </td>
+                        {% if article.product.has_sizes %}
+                            <input type="hidden" name="size_option" value="{{ article.size }}">
+                        {% endif %}
                      </form>    
                         <td>    
-                            <a class="update-click btn btn-outline-dark btn-sm" type="submit">Update Cart</a>
+                            <a class="update-click btn btn-outline-dark btn-sm" id="update_{{ article.article_id }}" type="submit" onclick="document.getElementById('update-form').submit();">Update Cart</a>
                             <a class="remove-item btn btn-outline-dark btn-sm" id="remove_{{ article.article_id }}" data-product_size="{{ article.size }}" onclick="return confirm('Are you sure you want to delete this article?')">X</a>
                         </td>
                    
@@ -77,8 +78,15 @@
 </section>
 <script type="text/javascript">
     // Update quantity on click
+    var form = document.getElementById("update-form");
+    
     $('.update-click').click(function(e) {
+        console.log("update has been clicked")
         var form = $(this).parent().prev().prev().prev('.update-form');
+        form.submit();
+    })
+    $('.update-click').click(function(e) {
+        var form = $(this).prev('.update-form');
         form.submit();
     })
 

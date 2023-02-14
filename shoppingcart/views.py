@@ -41,14 +41,19 @@ def edit_cart(request, article_id):
     product = get_object_or_404(Product, pk=article_id)
     quantity = int(request.POST.get('quantity'))
     size = None
+    print("In the view")
 
     if 'size_option' in request.POST:
         size = request.POST['size_option']
+        print('SIZE OPTION IS: ', size)
     cart = request.session.get('cart', {})
 
     if size:
+        print('THE SIZE IS: ', size)
         if quantity > 0:
+            print('Size exists and quantity is > 0')
             cart[article_id]['items_by_size'][size] = quantity
+            print(quantity)
             # messages.success(request, f'Updated size {size.upper()} {product.name} quantity to {bag[item_id]["items_by_size"][size]}')
         else:
             del cart[article_id]['items_by_size'][size]
