@@ -106,25 +106,19 @@
                         <div class="mb-3 text-danger" id="card-errors" role="alert"></div>
                     </fieldset>
 
-                    <div class="submit-button text-right mt-5 mb-2">                    
-						<a href="{% url 'overview_orders' %}" class="btn btn-outline-black rounded-0">
-							<span class="icon">
-								<i class="fas fa-chevron-left"></i>
-							</span>
-							<span class="font-weight-bold">Adjust Shoppingcart</span>
-						</a>
-						<button id="submit-button" class="btn btn-black rounded-0">
-							<span class="font-weight-bold">Complete Order</span>
-							<span class="icon">
-								<i class="fas fa-lock"></i>
-							</span>
-						</button>
-						<p class="small text-danger my-0">
+                    <div class="submit-button text-right mt-1 mb-2"> 
+                        <p class="small text-danger my-0">
 							<span class="icon">
 								<i class="fas fa-exclamation-circle"></i>
 							</span>
 							<span>Your card will be charged <strong>€{{ grand_total|floatformat:2 }}</strong></span>
-						</p>
+						</p>            
+						<a href="{% url 'overview_orders' %}" class="btn btn-custom mt-2">
+							<span class="font-weight-bold">Edit Shoppingcart</span>
+						</a>
+						<button id="submit-button" class="btn btn-custom mt-2">
+							<span class="font-weight-bold">Checkout</span>
+						</button>
 					</div>
                 </form>
             </div>
