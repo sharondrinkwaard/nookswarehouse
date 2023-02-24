@@ -54,19 +54,19 @@ def edit_cart(request, article_id):
             print('Size exists and quantity is > 0')
             cart[article_id]['items_by_size'][size] = quantity
             print(quantity)
-            # messages.success(request, f'Updated size {size.upper()} {product.name} quantity to {bag[item_id]["items_by_size"][size]}')
+            # messages.success(request, f'Updated size {size.upper()} {product.name} quantity to {cart[item_id]["items_by_size"][size]}')
         else:
             del cart[article_id]['items_by_size'][size]
             if not cart[article_id]['items_by_size']:
                 cart.pop(article_id)
-            # messages.success(request, f'Removed size {size.upper()} {product.name} from your bag')
+            # messages.success(request, f'Removed size {size.upper()} {product.name} from your cart')
     else:
         if quantity > 0:
             cart[article_id] = quantity
-            # messages.success(request, f'Updated {product.name} quantity to {bag[article_id]}')
+            # messages.success(request, f'Updated {product.name} quantity to {cart[article_id]}')
         else:
             cart.pop(article_id)
-            # messages.success(request, f'Removed {product.name} from your bag')
+            # messages.success(request, f'Removed {product.name} from your cart')
 
     request.session['cart'] = cart
     return redirect(reverse('overview_orders'))

@@ -34,8 +34,6 @@ def shopping_content(request):
                     'product': product,
                     'size': size,
                 })
-    # Grand total is not in use yet
-    # Note: I will need it when continuing after submitting PP5.
     grand_total = total + delivery
 
     context = {

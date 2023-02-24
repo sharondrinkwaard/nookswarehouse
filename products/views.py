@@ -48,6 +48,7 @@ def product_detail(request, product_id):
     product = get_object_or_404(Product, pk=product_id)
     form_size = ProductSize()
     form_quanity = ProductQuantity()
+    # Form color is not in use yet
     form_color = ProductColor()
 
     context = {
