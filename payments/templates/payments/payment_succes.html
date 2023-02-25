@@ -3,6 +3,7 @@
 {% load crispy_forms_tags %}
 
 {% block page_header %}
+    Order Overview
 {% endblock %}
 
 {% block extra_css %}
@@ -19,20 +20,62 @@
                 <hr>
                 <p>
                     Your order information is displayed below. <br>
-                    A confirmation email will be send to <strong>{{ order.email }}</strong>
+                    A confirmation email will be send to <strong>{{ order.email }}</strong> <hr>
                 </p>
             </div>
         </div>
         <div class="row">
-
+            <div class="col-12">
+                <p>
+                    Order Number:<br><span><strong>{{ order.order_number }}</strong></span>
+                </p>
+            </div>
+            <div class="col-12">
+                <p>
+                    Order Date:<br><span><strong>{{ order.date }}</strong></span>
+                </p>
+            </div>
+            {% for article in order.lineitems.all %}
+            <div class="col-12">
+                <p>
+                    Product Name: <br><span><strong>{{ article.product.name }}</strong></span>
+                </p>
+                
+                <p>
+                    Size: <br><span><strong>{% if article.product_size %}{{ article.size }}{% else%} N/A {% endif %}</strong></span>
+                </p>
+                <p>
+                    Quantity: <br><span><strong>{{ article.quantity }}</strong></span>
+                </p>
+            {% endfor %}
+            </div>
+            <div class="col-12">
+                <p>
+                    DELIVERY: <hr>
+                </p>
+                <p>
+                    Name: <br><span><strong>{{ order.first_name }} {{ order.last_name }}</strong></span>
+                </p>
+                <p>
+                     Address: <br><span><strong>{{ order.street_address }} {{ order.house_number }}<br>
+                     {% if order.postcodde %}{{ order.postcode }}{% endif%} {{ order.city }} <br>
+                     {% if order.county %}{{ order.county }}{% endif%}
+                     {% if order.country %}{{ order.country }}{% endif %}</strong></span>
+                </p>
+                <p>
+                    Phone Number: <br><span><strong>{{ order.phone_number}}</strong></span>
+                </p>
+            </div>
+            <div class="col-12">
+                <p>
+                    BILLING INFO: <hr>
+                </p>
+                <p>
+                    Order Total: €{{ order.order_total }} <br>
+                    Delivery Costs: €{{ order.delivery_costs}} <br>
+                    <strong>Total Price: €{{ order.grand_total }}</strong>
+                </p>
+            </div>
         </div>
-
-
-
-
-
-
-
-
 </section>
 {% endblock %}
