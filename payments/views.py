@@ -79,6 +79,7 @@ def payments(request):
 
     current_cart = shopping_content(request)
     total = current_cart['grand_total']
+    order_form = OrderForm()
     stripe_total = round(total * 100)
     stripe.api_key = stripe_secret_key
     intent = stripe.PaymentIntent.create(
@@ -86,26 +87,26 @@ def payments(request):
         currency=settings.STRIPE_CURRENCY,
     )
 
-        # Attempt to prefill the form with any info the user maintains in their profile
-        # if request.user.is_authenticated:
-        #     try:
-        #         profile = UserProfile.objects.get(user=request.user)
-        #         order_form = OrderForm(initial={
-        #             'first_name': request.POST['first_name'],
-        #             'last_name': request.POST['last_name'],
-        #             'email': request.POST['email'],
-        #             'phone_number': request.POST['phone_number'],
-        #             'postcode': request.POST['postcode'],
-        #             'city': request.POST['city'],
-        #             'street_address': request.POST['street_address'],
-        #             'house_number': request.POST['house_number'],
-        #             'county': request.POST['county'],
-        #             'country': request.POST['country'],
-        #         })
-        #     except UserProfile.DoesNotExist:
-        #         order_form = OrderForm()
-        # else:
-        #     order_form = OrderForm()
+# Attempt to prefill the form with any info the user maintains in their profile
+# if request.user.is_authenticated:
+#     try:
+#         profile = UserProfile.objects.get(user=request.user)
+#         order_form = OrderForm(initial={
+#             'first_name': request.POST['first_name'],
+#             'last_name': request.POST['last_name'],
+#             'email': request.POST['email'],
+#             'phone_number': request.POST['phone_number'],
+#             'postcode': request.POST['postcode'],
+#             'city': request.POST['city'],
+#             'street_address': request.POST['street_address'],
+#             'house_number': request.POST['house_number'],
+#             'county': request.POST['county'],
+#             'country': request.POST['country'],
+#         })
+#     except UserProfile.DoesNotExist:
+#         order_form = OrderForm()
+# else:
+#     order_form = OrderForm()
 
     if not stripe_public_key:
         print('Stripe key missing')
