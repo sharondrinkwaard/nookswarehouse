@@ -1,11 +1,31 @@
-from django.shortcuts import render, redirect, reverse, get_object_or_404
+from django.shortcuts import render, redirect, reverse, get_object_or_404, HttpResponse
 from django.contrib import messages
+from django.views.decorators.http import require_POST
 from django.conf import settings
 from .forms import OrderForm
 from shoppingcart.contexts import shopping_content
 from .models import OrderLineItem, Order
 from products.models import Product
 import stripe
+import json
+
+
+@require_POST
+def safe_payment_data(request):
+    try:
+        pid = request.POST.get('client_secret').split('_secret')[0]
+        stripe_api_key = settings.STRIPE_SECRET_KEY
+        stripe.PaymentIntent.modify(pid, metadata={
+            'cart': json.dumps(request.session.get('cart')),
+            'safe_info': request.POST.get('safe-info'),
+            'user': request.user
+        })
+        return HttpResponse(status=200)
+    except Exception as e:
+        print('Payment cannot be processed')
+        # messages.error(request, 'Sorry, your payment cannot be proccessed \
+        #     right now. Please try again later.')
+        return HttpResponse(content=e, status=400)
 
 
 def payments(request):
