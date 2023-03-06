@@ -50,10 +50,10 @@ def payments(request):
 
         order_form = OrderForm(payment_form_data)
         if order_form.is_valid():
-            # order = order_form.save(commit=False)
-            # pid = request.POST.get('client_secret').split('_secret')[0]
-            # order.stripe_pid = pid
-            # order.original_bag = json.dumps(bag)
+            order = order_form.save(commit=False)
+            pid = request.POST.get('client_secret').split('_secret')[0]
+            order.stripe_pid = pid
+            order.original_cart = json.dumps(cart)
             order = order_form.save()
             for article_id, item_data in cart.items():
                 try:

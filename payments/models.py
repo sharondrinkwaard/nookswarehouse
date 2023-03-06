@@ -29,7 +29,9 @@ class Order(models.Model):
     delivery_costs = models.DecimalField(max_digits=6, decimal_places=2, null=False, default=0)
     order_total = models.DecimalField(max_digits=10, decimal_places=2, null=False, default=0)
     grand_total = models.DecimalField(max_digits=10, decimal_places=2, null=False, default=0)
-    
+    stripe_pid = models.CharField(max_length=260, null=False, blank=False, default='')
+    original_cart = models.TextField(null=False, blank=False, default='')
+
     def _create_order_number(self):
         """ Creates a unique order number using UUID """
         return uuid.uuid4().hex.upper()
